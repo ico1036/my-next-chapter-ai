@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Next Chapter AI — 나의 파운더 노트</title>
+<meta name="description" content="당신을 기억하는 AI 창업 코치. 매일 15분, 첫 고객까지.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='42' fill='%23E07A33'/%3E%3Ccircle cx='38' cy='38' r='12' fill='%23E8B04B'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* app-specific */
+  .app-nav{position:sticky;top:0;z-index:40;background:rgba(251,247,240,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .app-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .app-main{padding:34px 0 80px}
+  .app-grid{display:grid;grid-template-columns:340px 1fr;gap:28px;align-items:start}
+  @media(max-width:900px){.app-grid{grid-template-columns:1fr}}
+  .panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow-sm);margin-bottom:20px}
+  .panel h3{font-size:1.05rem;margin-bottom:12px;display:flex;align-items:center;gap:.5em}
+  .field{margin-bottom:14px}
+  .field label{display:block;font-size:.86rem;font-weight:600;color:var(--ink);margin-bottom:5px}
+  .field input,.field textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-family:inherit;font-size:.95rem}
+  .field textarea{min-height:48px;resize:vertical}
+  .field input:focus,.field textarea:focus{outline:none;border-color:var(--amber)}
+  .coach-bubble{background:var(--plum);color:#F4ECE0;border-radius:var(--radius);padding:18px 20px;position:relative;font-size:1rem;line-height:1.5}
+  .coach-bubble .who{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px}
+  .today{border:1px solid var(--amber);background:var(--amber-soft);border-radius:var(--radius);padding:18px 20px}
+  .today .lab{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--amber-deep);font-weight:700}
+  .today .act{font-family:var(--serif);font-size:1.2rem;margin-top:6px;color:var(--ink)}
+  .streak{display:flex;align-items:center;gap:10px;font-size:.9rem;color:var(--ink-soft)}
+  .streak .flame{font-size:1.4rem}
+  .tl-item{border-left:2px solid var(--line);padding:0 0 18px 16px;position:relative}
+  .tl-item:before{content:"";position:absolute;left:-6px;top:3px;width:10px;height:10px;border-radius:50%;background:var(--amber)}
+  .tl-item .day{font-size:.78rem;color:var(--ink-faint);font-weight:600}
+  .tl-item .body{font-size:.92rem;margin-top:4px}
+  .tl-item .body b{color:var(--ink)}
+  .clarity-big{font-family:var(--serif);font-size:2.6rem;color:var(--amber-deep);line-height:1}
+  .gaugewrap .track{height:11px;border-radius:99px;background:#eee3d3;overflow:hidden}
+  .gaugewrap .fill{height:100%;background:linear-gradient(90deg,var(--amber),var(--gold));border-radius:99px;transition:width 1s cubic-bezier(.2,.7,.2,1)}
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:99px;overflow:hidden;font-size:.85rem}
+  .seg button{background:#fff;border:none;padding:.5em 1em;color:var(--ink-soft)}
+  .seg button.on{background:var(--amber);color:#fff;font-weight:600}
+  .ob-shell{max-width:680px;margin:40px auto}
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:.8em 1.4em;border-radius:99px;font-size:.92rem;opacity:0;transition:all .3s;z-index:60}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  .empty{color:var(--ink-faint);font-size:.92rem;padding:8px 0}
+  .report-line{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed var(--line);font-size:.93rem}
+  .report-line:last-child{border:none}
+</style>
+</head>
+<body>
+
+<nav class="app-nav">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="dot"></span> My <b>Next Chapter</b> AI</a>
+    <div class="row" style="align-items:center">
+      <span class="pill" id="day-pill">Day 1</span>
+      <button class="btn btn-ghost" id="reset-btn" style="padding:.5em 1em;font-size:.85rem">처음부터</button>
+    </div>
+  </div>
+</nav>
+
+<main class="app-main">
+  <div class="wrap">
+
+    <!-- ONBOARDING -->
+    <div id="onboarding" class="ob-shell">
+      <div class="center" style="margin-bottom:24px">
+        <span class="eyebrow">2분 온보딩</span>
+        <h2 class="serif mt8">먼저, 당신을 알려주세요</h2>
+        <p class="lead mt8">이 입력으로 당신의 <b>방향(setpoint)</b>을 잡습니다. 매일 채워가며 더 또렷해집니다.</p>
+      </div>
+      <div class="demo-shell">
+        <div class="demo-head"><span class="live"><span class="blip"></span> 설정</span><span class="muted" style="font-size:.86rem">Founder Profile</span></div>
+        <div class="demo-body">
+          <div id="ob-form">
+            <div class="demo-step active">
+              <div class="q-label">1. 어떤 경험이 있으세요?</div>
+              <div class="q-help">한국에서든 미국에서든, 일이든 살림이든 다 자산입니다.</div>
+              <div class="chips" id="ob-exp"></div>
+              <textarea class="demo-text mt16" id="ob-text" placeholder="자유롭게: 예) 한국에서 간호사였고, 미국 와서 두 아이 키우며 동네 엄마들 건강 상담을 자주 해줬어요."></textarea>
+            </div>
+            <div class="demo-step">
+              <div class="q-label">2. 무엇을 할 때 시간 가는 줄 모르세요?</div>
+              <div class="q-help">에너지가 차오르는 일 = 당신의 방향.</div>
+              <div class="chips" id="ob-enjoy"></div>
+            </div>
+            <div class="demo-step">
+              <div class="q-label">3. 누구를 가장 돕고 싶으세요?</div>
+              <div class="q-help">이미 신뢰를 가진 사람들이 첫 고객이 됩니다.</div>
+              <div class="chips" id="ob-aud"></div>
+            </div>
+            <div class="demo-foot">
+              <button class="btn btn-ghost" id="ob-back" style="visibility:hidden">← 이전</button>
+              <div class="steps-dots"><i class="on"></i><i></i><i></i></div>
+              <button class="btn btn-primary" id="ob-next">다음 →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div id="dashboard" style="display:none">
+      <div class="app-grid">
+        <!-- left rail -->
+        <div>
+          <div class="panel" id="identity-panel">
+            <h3>🧭 나의 방향</h3>
+            <div id="identity-sentence" class="serif" style="font-size:1.15rem;line-height:1.35"></div>
+            <div class="gaugewrap" style="margin-top:18px">
+              <div class="row" style="justify-content:space-between;align-items:flex-end">
+                <span class="muted" style="font-size:.84rem">방향 선명도</span>
+                <span class="clarity-big" id="clarity-num">35</span>
+              </div>
+              <div class="track" style="margin-top:6px"><div class="fill" id="clarity-fill" style="width:35%"></div></div>
+              <p class="muted" style="font-size:.78rem;margin-top:8px">매일의 기록이 이 숫자를 올립니다. <b>이게 당신의 해자예요.</b></p>
+            </div>
+          </div>
+
+          <div class="panel" id="offer-panel">
+            <h3>🎯 나의 첫 오퍼</h3>
+            <div id="offer-box"></div>
+          </div>
+
+          <div class="panel">
+            <h3>🔥 연속기록</h3>
+            <div class="streak"><span class="flame">🔥</span><span id="streak-text">아직 시작 전 — 오늘 첫 기록을 남겨보세요.</span></div>
+          </div>
+        </div>
+
+        <!-- main column -->
+        <div>
+          <div class="panel">
+            <div class="coach-bubble"><div class="who">AI 파운더 코치</div><div id="coach-line">첫 기록을 남겨보세요. 오늘 단 한 줄이면 충분합니다.</div></div>
+          </div>
+
+          <div class="panel">
+            <div class="today"><div class="lab">오늘의 1cm</div><div class="act" id="today-action">—</div></div>
+          </div>
+
+          <div class="panel">
+            <h3>📝 오늘의 파운더 노트 <span class="muted" style="font-size:.8rem;font-weight:400">— 15분이면 충분</span></h3>
+            <div class="field"><label>오늘 내 일을 위해 무엇을 했나요?</label><textarea id="n-did" placeholder="작은 것도 좋아요. 예: 오퍼 제목을 세 번 고쳐 썼다."></textarea></div>
+            <div class="field"><label>오늘 들은 고객의 말 <span class="muted" style="font-weight:400">(가장 강한 신호)</span></label><textarea id="n-heard" placeholder="누가 어떤 문제를 이야기했나요?"></textarea></div>
+            <div class="field"><label>오늘 배운 것</label><textarea id="n-learned" placeholder="새롭게 알게 된 것"></textarea></div>
+            <div class="field"><label>막힌 것 <span class="muted" style="font-weight:400">(있다면)</span></label><input id="n-blocked" placeholder="예: 가격을 얼마로 해야 할지 모르겠다"></div>
+            <div class="field"><label>내일 할 작은 행동</label><input id="n-tomorrow" placeholder="15분 안에 할 수 있는 다음 한 걸음"></div>
+            <button class="btn btn-primary btn-block" id="save-note">오늘 기록 저장하고 코치에게 전달 →</button>
+          </div>
+
+          <div class="panel">
+            <h3>📈 주간 리포트</h3>
+            <div id="report-box"><p class="empty">기록이 쌓이면 이번 주 전진 거리와 다음 한 가지 제안이 여기 나타납니다.</p></div>
+          </div>
+
+          <div class="panel">
+            <h3>🕒 나의 여정</h3>
+            <div id="timeline"><p class="empty">아직 기록이 없습니다.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/ontology.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
