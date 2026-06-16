@@ -18,7 +18,7 @@
     <div class="nav-links">
       <a href="#problem">문제</a>
       <a href="#solution">해결</a>
-      <a href="#how">왜 우리</a>
+      <a href="#how">작동 원리</a>
       <a href="#demo">데모</a>
       <a href="#bm">수익</a>
       <a href="app.html" class="btn btn-ghost" style="padding:.5em 1.1em">제품 미리보기</a>
@@ -113,6 +113,94 @@
   </div>
 </section>
 
+<!-- HOW IT WORKS : the closed loop -->
+<section class="dark" id="how">
+  <div class="wrap">
+    <div class="shead reveal">
+      <span class="eyebrow">Underlying magic · 우리가 진짜 하는 일</span>
+      <h2>기능 3개가 아니라,<br>하나의 <span class="hl">닫힌 루프</span>입니다</h2>
+      <p class="lead">매일의 기록으로 루프를 닫아, 당신만의 <b>초개인화 온톨로지</b>를 만듭니다.
+        흩어져 있던 방향을 <b>한쪽으로 정렬(align)</b>하고 — 그 목표값은 "돈 버는 한 가지"(창업이든, 재취업이든, 부업이든).
+        거기에 맞는 <b>오퍼</b>를 계속 다듬습니다. <b class="hl">언제까지? 실제로 돈이 벌릴 때까지.</b></p>
+    </div>
+    <div class="loop" style="--g:18px">
+      <div class="loop-node reveal">
+        <div class="n">01</div><div class="role">Reference · 방향</div>
+        <h3>방향이 생긴다</h3>
+        <p>당신이 언어화하지 못한 “되고 싶은 방향”을 AI가 <b>한 문장</b>으로 압축해 가지고 있습니다.</p>
+        <span class="loop-arrow">→</span>
+      </div>
+      <div class="loop-node reveal">
+        <div class="n">02</div><div class="role">Estimator · 위치</div>
+        <h3>위치가 보인다</h3>
+        <p>매일 15분의 기록이 “지금 어디까지 왔는지”를 갱신합니다. 코치가 <b>어제의 당신</b> 위에서 말합니다.</p>
+        <span class="loop-arrow">→</span>
+      </div>
+      <div class="loop-node reveal">
+        <div class="n">03</div><div class="role">Control · 한 걸음</div>
+        <h3>멈추지 않는다</h3>
+        <p>오늘의 1cm는 가장 <b>당신답고</b> 가장 작아서, 실행이 곧 “나는 해내는 사람”이라는 증거가 됩니다.</p>
+      </div>
+    </div>
+    <div class="reveal mt40" style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
+      <span class="pill" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);color:#EADFCF">🎯 목표값 = 돈 버는 오퍼 (창업·재취업·부업)</span>
+      <span class="pill" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);color:#EADFCF">🔁 매일 정렬 · 재조정</span>
+      <span class="pill" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);color:#EADFCF">🏁 종료조건 = 첫 매출</span>
+    </div>
+    <p class="center muted mt24 reveal">오차신호(목표 − 지금 위치) = 매일의 코칭. <b style="color:var(--gold)">쓸수록 더 정렬되고, 그래서 갈아탈 수 없습니다. → 아래에서 직접 보세요.</b></p>
+  </div>
+</section>
+
+<!-- UNDERLYING MAGIC → LIVE DEMO -->
+<section id="demo">
+  <div class="wrap">
+    <div class="shead center reveal">
+      <span class="eyebrow">라이브 데모 — 말이 아니라, 직접 보여드립니다</span>
+      <h2>당신의 경험이<br>첫 오퍼가 되는 길</h2>
+      <p class="lead">30초. 세 가지만 고르면, 우리의 <b>온톨로지 엔진</b>이 당신의 경험을
+        <b>한 문장 정체성 · 첫 오퍼 · 가격 · 첫 고객 · 오늘 할 한 걸음</b>으로 바꿔드립니다.</p>
+    </div>
+
+    <div class="demo-shell reveal">
+      <div class="demo-head">
+        <span class="live"><span class="blip"></span> LIVE</span>
+        <span class="muted" style="font-size:.86rem">AI Founder Coach — 경험 → 오퍼 변환 데모</span>
+      </div>
+      <div class="demo-body">
+        <div id="demo-form">
+          <!-- step 0 -->
+          <div class="demo-step active">
+            <div class="q-label">1. 어떤 경험이 있으세요? <span class="muted">(여러 개 선택 가능)</span></div>
+            <div class="q-help">한국에서든 미국에서든, 일이든 살림이든 — 다 자산입니다.</div>
+            <div class="chips" id="chips-exp"></div>
+            <textarea class="demo-text mt16" id="demo-text" placeholder="또는 자유롭게 적어주세요. 예: 한국에서 중학교 영어 교사였고, 미국 와서 아이 둘 키우며 동네 엄마들 입시 상담을 자주 해줬어요."></textarea>
+          </div>
+          <!-- step 1 -->
+          <div class="demo-step">
+            <div class="q-label">2. 무엇을 할 때 시간 가는 줄 모르세요?</div>
+            <div class="q-help">에너지가 차오르는 일 = 당신의 자기장 방향입니다.</div>
+            <div class="chips" id="chips-enjoy"></div>
+          </div>
+          <!-- step 2 -->
+          <div class="demo-step">
+            <div class="q-label">3. 누구를 가장 돕고 싶으세요?</div>
+            <div class="q-help">당신이 이미 신뢰를 가진 사람들이 첫 고객이 됩니다.</div>
+            <div class="chips" id="chips-aud"></div>
+          </div>
+
+          <div class="demo-foot">
+            <button class="btn btn-ghost" id="demo-back" style="visibility:hidden">← 이전</button>
+            <div class="steps-dots"><i class="on"></i><i></i><i></i></div>
+            <button class="btn btn-primary" id="demo-next">다음 →</button>
+          </div>
+        </div>
+        <div id="demo-result" style="display:none"></div>
+      </div>
+    </div>
+    <p class="center muted mt16" style="font-size:.84rem">이 데모는 입력을 저장하지 않습니다. 실제 제품에선 기록이 쌓일수록 결과가 당신에게 더 정확해집니다.</p>
+  </div>
+</section>
+
 <!-- WHY THIS TARGET + MARKET -->
 <section id="why">
   <div class="wrap">
@@ -162,88 +250,6 @@
       <div class="stat reveal"><div class="num">−212k</div><div class="cap">여성 노동시장 이탈 ('25)</div><div class="src">엄마 LFP 69.7%→66.9%, 전일출근 의무 13%→24% — BLS/Fortune</div></div>
     </div>
     <p class="center muted mt24 reveal" style="font-size:.85rem">AI가 1인 사업 비용을 무너뜨린 그 순간 — RTO·돌봄비용에 밀려난 35–55세 한인 이민 여성에게 <b>모국어로 손잡는</b> 도구가 비어 있습니다.</p>
-  </div>
-</section>
-
-<!-- HOW IT WORKS : the closed loop -->
-<section class="dark" id="how">
-  <div class="wrap">
-    <div class="shead reveal">
-      <span class="eyebrow">Why us · 왜 멈추지 않는가</span>
-      <h2>기능 3개가 아니라,<br>하나의 <span class="hl">닫힌 루프</span>입니다</h2>
-      <p class="lead">ChatGPT는 open-loop입니다 — 매번 0에서 시작해 질문에 답합니다.
-        우리는 closed-loop입니다 — 상태를 누적해 <b>궤적을 제어</b>합니다. 그들은 답을 팔고, 우리는 <b>다음 챕터</b>를 팝니다.</p>
-    </div>
-    <div class="loop" style="--g:18px">
-      <div class="loop-node reveal">
-        <div class="n">01</div><div class="role">Reference · 방향</div>
-        <h3>방향이 생긴다</h3>
-        <p>당신이 언어화하지 못한 “되고 싶은 방향”을 AI가 <b>한 문장</b>으로 압축해 가지고 있습니다.</p>
-        <span class="loop-arrow">→</span>
-      </div>
-      <div class="loop-node reveal">
-        <div class="n">02</div><div class="role">Estimator · 위치</div>
-        <h3>위치가 보인다</h3>
-        <p>매일 15분의 기록이 “지금 어디까지 왔는지”를 갱신합니다. 코치가 <b>어제의 당신</b> 위에서 말합니다.</p>
-        <span class="loop-arrow">→</span>
-      </div>
-      <div class="loop-node reveal">
-        <div class="n">03</div><div class="role">Control · 한 걸음</div>
-        <h3>멈추지 않는다</h3>
-        <p>오늘의 1cm는 가장 <b>당신답고</b> 가장 작아서, 실행이 곧 “나는 해내는 사람”이라는 증거가 됩니다.</p>
-      </div>
-    </div>
-    <p class="center muted mt40 reveal">오차신호(가고 싶은 곳 − 지금 위치) = 매일의 코칭. <b style="color:var(--gold)">쓸수록 똑똑해지고, 그래서 갈아탈 수 없습니다.</b></p>
-  </div>
-</section>
-
-<!-- UNDERLYING MAGIC → LIVE DEMO -->
-<section id="demo">
-  <div class="wrap">
-    <div class="shead center reveal">
-      <span class="eyebrow">Underlying magic — 말로 하지 않고, 보여드립니다</span>
-      <h2>당신의 경험이<br>첫 오퍼가 되는 길</h2>
-      <p class="lead">30초. 세 가지만 고르면, 우리의 <b>온톨로지 엔진</b>이 당신의 경험을
-        <b>한 문장 정체성 · 첫 오퍼 · 가격 · 첫 고객 · 오늘 할 한 걸음</b>으로 바꿔드립니다.</p>
-    </div>
-
-    <div class="demo-shell reveal">
-      <div class="demo-head">
-        <span class="live"><span class="blip"></span> LIVE</span>
-        <span class="muted" style="font-size:.86rem">AI Founder Coach — 경험 → 오퍼 변환 데모</span>
-      </div>
-      <div class="demo-body">
-        <div id="demo-form">
-          <!-- step 0 -->
-          <div class="demo-step active">
-            <div class="q-label">1. 어떤 경험이 있으세요? <span class="muted">(여러 개 선택 가능)</span></div>
-            <div class="q-help">한국에서든 미국에서든, 일이든 살림이든 — 다 자산입니다.</div>
-            <div class="chips" id="chips-exp"></div>
-            <textarea class="demo-text mt16" id="demo-text" placeholder="또는 자유롭게 적어주세요. 예: 한국에서 중학교 영어 교사였고, 미국 와서 아이 둘 키우며 동네 엄마들 입시 상담을 자주 해줬어요."></textarea>
-          </div>
-          <!-- step 1 -->
-          <div class="demo-step">
-            <div class="q-label">2. 무엇을 할 때 시간 가는 줄 모르세요?</div>
-            <div class="q-help">에너지가 차오르는 일 = 당신의 자기장 방향입니다.</div>
-            <div class="chips" id="chips-enjoy"></div>
-          </div>
-          <!-- step 2 -->
-          <div class="demo-step">
-            <div class="q-label">3. 누구를 가장 돕고 싶으세요?</div>
-            <div class="q-help">당신이 이미 신뢰를 가진 사람들이 첫 고객이 됩니다.</div>
-            <div class="chips" id="chips-aud"></div>
-          </div>
-
-          <div class="demo-foot">
-            <button class="btn btn-ghost" id="demo-back" style="visibility:hidden">← 이전</button>
-            <div class="steps-dots"><i class="on"></i><i></i><i></i></div>
-            <button class="btn btn-primary" id="demo-next">다음 →</button>
-          </div>
-        </div>
-        <div id="demo-result" style="display:none"></div>
-      </div>
-    </div>
-    <p class="center muted mt16" style="font-size:.84rem">이 데모는 입력을 저장하지 않습니다. 실제 제품에선 기록이 쌓일수록 결과가 당신에게 더 정확해집니다.</p>
   </div>
 </section>
 
